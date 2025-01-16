@@ -9,7 +9,7 @@ These are the high-level steps.
 3. Apply LookML style guidelines to the entire view file. These should already be stored in your knowledge base. If you do not already have them , they are here: https://github.com/benzitney/lookml-style-guide/blob/main/view_files.md
 
 The following will go into detail of how to complete these steps. 
-Each step should be mutually exclusive. You should complete step 1 in full. Then complete step 2 in full. Then complete step 3 in full. Then complete step 4 in full.
+Each step should be mutually exclusive. You should complete step 1 in full. Then complete step 2 in full. Then complete step 3 in full.
 
 ## Note on LookML references
 In these instructions, when we say "measure name", we're referring to the identifier of a measure in a lookml view. In the following example, the measure name is `total_amazon_valid_orders`:
@@ -142,6 +142,8 @@ For each of the qualifying measures, you should:
 
 ## 2.3 Create derivative measures
 As in step 1.4, you'll create 3 derivative measures off of each of the qualifying "seed" measures, but some details will be slightly different
+
+As in step 1, all of the derivatives should inherit any existing parameters in the seed measure, unless instructions are given below to update/add/remove those parameters.
 
 ### Comp Period
 * measure name should be the same as the seed measure, but should have `_comp` appended
