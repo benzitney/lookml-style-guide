@@ -75,7 +75,8 @@ All of the derivatives should inherit any existing parameters in the seed measur
 * measure `sql` parameter should be `1.00 * ${seed_measure} / NULLIF(${comp_period},0) - 1 ;;` but replace `seed_measure` with the name of the seed measure and `comp_period` with the name of the seed measure's comp_period measure
 * measure value_format_name should be `percent_change_0`
 
-Here is an example ...
+
+### Example
 Seed measure:
 ```
   measure: total_amazon_valid_orders {
@@ -169,6 +170,56 @@ As in step 1.4, you'll create 3 derivative measures off of each of the qualifyin
 * measure `description` should be `"The percent change between the current period and the comparison period."`
 * measure `sql` parameter should be `1.00 * ${seed_measure} / NULLIF(${comp_period},0) - 1 ;;` but replace `seed_measure` with the name of the seed measure and `comp_period` with the name of the seed measure's comp_period measure
 * measure value_format_name should be `percent_change_0`
+
+
+Seed measure:
+```
+  measure: overall_blended_cpa {
+    type: number
+    group_label: "Total Company"
+    label: "Overall Blended CPA"
+    description: "Total Marketing Spend divided by Total New Customers"
+    sql: ${total_marketing_spend} / NULLIF(${total_new_customers},0) ;;
+    value_format_name: currency_2
+  }
+```
+
+This should be replaced by the following:
+```
+  measure: overall_blended_cpa {
+    type:  number
+    group_label: "Overall Blended CPA"
+    label: "Overall Blended CPA"
+    description: "Total Marketing Spend divided by Total New Customers"
+    sql: ${total_marketing_spend} / NULLIF(${total_new_customers},0) ;;
+    value_format_name: currency_2
+  }
+  measure: total_amazon_valid_orders_chg_vs_comp {
+    type: number
+    group_label: "Overall Blended CPA"
+    label: "Overall Blended CPA (Chg vs Comp)"
+    description: "The difference between the current period and the comparison period."
+    sql: ${overall_blended_cpa} - ${overall_blended_cpa_comp};;
+    value_format_name: decimal_0
+  }
+  measure: overall_blended_cpa_comp {
+    type: number
+    group_label: "Overall Blended CPA"
+    label: "Overall Blended CPA (Comp Period)"
+    description: "Total Marketing Spend divided by Total New Customers during the comparison period."
+    sql: ${total_marketing_spend_comp} / NULLIF(${total_new_customers_comp},0) ;;
+    value_format_name: decimal_0
+  }
+  measure: total_amazon_valid_orders_pct_chg_vs_comp {
+    type: number
+    group_label: "Overall Blended CPA"
+    label: "Overall Blended CPA (% Chg vs Comp)"
+    description: "The percent change between the current period and the comparison period."
+    sql: 1.00 * ${overall_blended_cpa} / NULLIF(${overall_blended_cpa_comp},0) - 1 ;;
+    value_format_name: percent_change_0
+  }
+
+```
 
 ## Step 3 — Apply LookML style guidelines
 Once the content in the view file is updated, it should be formatted to accord with the lookml style guidelines in this file: https://github.com/benzitney/lookml-style-guide/blob/main/view_files.md
