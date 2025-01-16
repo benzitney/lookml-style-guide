@@ -4,7 +4,7 @@ When you are asked to "Add the comparison measures to this view file", you are b
 We are updating our LookML code to make it easier for users to do time-based comparisons for different measures. This involves updating all of our existing measures and creating derivate measures of those existing measures.
 
 These are the high-level steps.
-1. Find all `type: sum` measures that aren't hidden, then (1) add a filter to them and (2) update/add their `group_label` parameters. Create derivative measures off of those existing non-hidden `sum` measures that will give the Comparison period value, Change between the Current period and comparison period, and % Change between the current period and the comparison period
+1. Find all `type: sum` or `type: count_distinct` measures that aren't hidden, then (1) add a filter to them and (2) update/add their `group_label` parameters. Create derivative measures off of those existing non-hidden measures that will give the Comparison period value, Change between the Current period and comparison period, and % Change between the current period and the comparison period
 2. Do the same for non-hidden `type: number` measures. We do this as a distinct step because it will require usage of measures created in step 2
 3. Apply LookML style guidelines to the entire view file. These should already be stored in your knowledge base. If you do not already have them , they are here: https://github.com/benzitney/lookml-style-guide/blob/main/view_files.md
 
@@ -24,11 +24,11 @@ In these instructions, when we say "measure name", we're referring to the identi
   }
 ```
 
-# Step 1 — Sum measures
+# Step 1 — Sum & count measures
 ## 1.1 Find qualfying measures
 Find all of the measures that:
 1. Do not have a `hidden: yes` parameter
-2. Have `type: sum`
+2. Have `type: sum` or `type: count_distinct`
 
 ## 1.2 Update/add filters
 For each of the qualifying measures, you should:
@@ -50,7 +50,7 @@ All of the derivatives should inherit any existing parameters in the seed measur
 
 ### Comp Period
 * measure name should be the same as the seed measure, but should have `_comp` appended
-* measure `type` should be `sum`
+* measure `type` should be the same as the seed measure
 * give it the same `group_label` as the seed measure
 * measure `label` should be the same as the current measure, but with the text ` (Comp Period)` appended
 * measure `description` should be `"seed_label during the comparison period."` (with `seed_label` replaced by the label value from the seed measure
