@@ -61,7 +61,7 @@ All of the derivatives should inherit any existing parameters in the seed measur
 * measure name should be the same as the seed measure, but should have `_chg_vs_comp` appended
 * measure `type` should be `number`
 * give it the same `group_label` as the seed measure
-* measure `label` should be the same as the current measure, but with the text ` (Chg vs Comp)` appended
+* measure `label` should be the same as the current measure, but with the text ` (Change)` appended
 * measure `description` should be `"The difference between the current period and the comparison period."`
 * measure `sql` parameter should be `${seed_measure} - ${comp_period} ;;` but replace `seed_measure` with the name of the seed measure and `comp_period` with the name of the seed measure's comp_period measure
 * measure `value_format_name` should be whatever the `value_format_name` of the seed measure was
@@ -70,7 +70,7 @@ All of the derivatives should inherit any existing parameters in the seed measur
 * measure name should be the same as the seed measure, but should have `_pct_chg_vs_comp` appended
 * measure `type` should be `number`
 * give it the same `group_label` as the seed measure
-* measure `label` should be the same as the current measure, but with the text ` (% Chg vs Comp)` appended
+* measure `label` should be the same as the current measure, but with the text ` (% Change)` appended
 * measure `description` should be `"The percent change between the current period and the comparison period."`
 * measure `sql` parameter should be `1.00 * ${seed_measure} / NULLIF(${comp_period},0) - 1 ;;` but replace `seed_measure` with the name of the seed measure and `comp_period` with the name of the seed measure's comp_period measure
 * measure value_format_name should be `percent_change_0`
@@ -103,7 +103,7 @@ This should be replaced by the following:
   measure: total_amazon_valid_orders_chg_vs_comp {
     type: number
     group_label: "Amazon Valid Orders"
-    label: "Amazon Valid Orders (Chg vs Comp)"
+    label: "Amazon Valid Orders (Change)"
     description: "The difference between the current period and the comparison period."
     sql: ${total_amazon_valid_orders} - ${total_amazon_valid_orders_comp};;
     value_format_name: decimal_0
@@ -111,7 +111,7 @@ This should be replaced by the following:
   measure: total_amazon_valid_orders_comp {
     type: sum
     group_label: "Amazon Valid Orders"
-    label: "Amazon Valid Orders (Comp Period)"
+    label: "Amazon Valid Orders (Comp)"
     description: "Total valid orders from Amazon during the comparison period."
     sql: ${total_amazon_valid_orders} ;;
     value_format_name: decimal_0
@@ -120,7 +120,7 @@ This should be replaced by the following:
   measure: total_amazon_valid_orders_pct_chg_vs_comp {
     type: number
     group_label: "Amazon Valid Orders"
-    label: "Amazon Valid Orders (% Chg vs Comp)"
+    label: "Amazon Valid Orders (% Change)"
     description: "The percent change between the current period and the comparison period."
     sql: 1.00 * ${total_amazon_valid_orders} / NULLIF(${total_amazon_valid_orders_comp},0) - 1 ;;
     value_format_name: percent_change_0
@@ -149,7 +149,7 @@ As in step 1, all of the derivatives should inherit any existing parameters in t
 * measure name should be the same as the seed measure, but should have `_comp` appended
 * measure `type` should be `number`
 * give it the same `group_label` as the seed measure
-* measure `label` should be the same as the current measure, but with the text ` (Comp Period)` appended
+* measure `label` should be the same as the current measure, but with the text ` (Comp)` appended
 * measure `description` should be `"seed_label during the comparison period."` (with `seed_label` replaced by the label value from the seed measure
 * measure `value_format_name` should be whatever the `value_format_name` of the seed measure was
 * measure `sql` parameter should be the same as the seed measure EXCEPT the fields that are being referenced should be to the `_comp` variations.
@@ -159,7 +159,7 @@ As in step 1, all of the derivatives should inherit any existing parameters in t
 * measure name should be the same as the seed measure, but should have `_chg_vs_comp` appended
 * measure `type` should be `number`
 * give it the same `group_label` as the seed measure
-* measure `label` should be the same as the current measure, but with the text ` (Chg vs Comp)` appended
+* measure `label` should be the same as the current measure, but with the text ` (Change)` appended
 * measure `description` should be `"The difference between the current period and the comparison period."`
 * measure `sql` parameter should be `${seed_measure} - ${comp_period} ;;` but replace `seed_measure` with the name of the seed measure and `comp_period` with the name of the seed measure's comp_period measure
 * measure `value_format_name` should be whatever the `value_format_name` of the seed measure was
@@ -168,7 +168,7 @@ As in step 1, all of the derivatives should inherit any existing parameters in t
 * measure name should be the same as the seed measure, but should have `_pct_chg_vs_comp` appended
 * measure `type` should be `number`
 * give it the same `group_label` as the seed measure
-* measure `label` should be the same as the current measure, but with the text ` (% Chg vs Comp)` appended
+* measure `label` should be the same as the current measure, but with the text ` (% Change)` appended
 * measure `description` should be `"The percent change between the current period and the comparison period."`
 * measure `sql` parameter should be `1.00 * ${seed_measure} / NULLIF(${comp_period},0) - 1 ;;` but replace `seed_measure` with the name of the seed measure and `comp_period` with the name of the seed measure's comp_period measure
 * measure value_format_name should be `percent_change_0`
@@ -199,7 +199,7 @@ This should be replaced by the following:
   measure: total_amazon_valid_orders_chg_vs_comp {
     type: number
     group_label: "Overall Blended CPA"
-    label: "Overall Blended CPA (Chg vs Comp)"
+    label: "Overall Blended CPA (Change)"
     description: "The difference between the current period and the comparison period."
     sql: ${overall_blended_cpa} - ${overall_blended_cpa_comp};;
     value_format_name: decimal_0
@@ -207,7 +207,7 @@ This should be replaced by the following:
   measure: overall_blended_cpa_comp {
     type: number
     group_label: "Overall Blended CPA"
-    label: "Overall Blended CPA (Comp Period)"
+    label: "Overall Blended CPA (Comp)"
     description: "Total Marketing Spend divided by Total New Customers during the comparison period."
     sql: ${total_marketing_spend_comp} / NULLIF(${total_new_customers_comp},0) ;;
     value_format_name: decimal_0
@@ -215,7 +215,7 @@ This should be replaced by the following:
   measure: total_amazon_valid_orders_pct_chg_vs_comp {
     type: number
     group_label: "Overall Blended CPA"
-    label: "Overall Blended CPA (% Chg vs Comp)"
+    label: "Overall Blended CPA (% Change)"
     description: "The percent change between the current period and the comparison period."
     sql: 1.00 * ${overall_blended_cpa} / NULLIF(${overall_blended_cpa_comp},0) - 1 ;;
     value_format_name: percent_change_0
